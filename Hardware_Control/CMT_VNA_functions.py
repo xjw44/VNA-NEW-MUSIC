@@ -18,7 +18,8 @@ from Hardware_Control import setSMASwitch
 from Hardware_Control import PS2520G_pwr_supply as PS
 
 
-instrument = 'S2VNA'
+# instrument = 'S2VNA'
+instrument = 'TRVNA'
 #Instantiate COM client
 try:
 	app = win32com.client.Dispatch(instrument + ".application")
@@ -50,7 +51,7 @@ else:
 
 
 def restart_app():
-    instrument = 'S2VNA'
+    # instrument = 'S2VNA'
     #Instantiate COM client
     try:
         app = win32com.client.Dispatch(instrument + ".application")
@@ -125,6 +126,7 @@ def Measure_S21(f_center, f_span, dev_name, cryo_chan, f_step=100, power=-55, Na
    
     Npts_max = 16001 # max num of pts the VNA can scan
     Npts = int(f_span/f_step)
+    print(Npts)
     Nscans = int(np.ceil(Npts/Npts_max)) # Num of needed iterations
     Nfc = len(str(f_center))
     str1 = str(np.round(f_center*10**(5-Nfc)))
